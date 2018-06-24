@@ -196,7 +196,10 @@ if __name__ == '__main__':
         },
         'nucleo_f429zi': {
             'mem_start': '0x08000000'
-        }
+        },
+        'nucleo_f767zi': {
+            'mem_start': '0x08000000'
+        }    
     }
 
     curdir = path.dirname(path.abspath(__file__))
