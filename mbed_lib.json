@@ -82,6 +82,12 @@
             "sotp-section-1-size"              : "(16*1024)",
             "sotp-section-2-address"           : "(0x08000000+48*1024)",
             "sotp-section-2-size"              : "(16*1024)"
+        },
+        "GR_LYCHEE": {
+            "sotp-section-1-address"           : "(0x18000000+56*1024)",
+            "sotp-section-1-size"              : "(4*1024)",
+            "sotp-section-2-address"           : "(0x18000000+60*1024)",
+            "sotp-section-2-size"              : "(4*1024)"
         }
      }
 }

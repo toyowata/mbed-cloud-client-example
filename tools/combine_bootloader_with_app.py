@@ -204,6 +204,9 @@ if __name__ == '__main__':
         },
         'ublox_c030_u201': {
             'mem_start': '0x08000000'
+        },
+        'gr_lychee': {
+            'mem_start': '0x18000000'
         }
     }
 
