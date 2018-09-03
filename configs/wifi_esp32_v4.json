@@ -21,10 +21,8 @@
         },
         "GR_LYCHEE": {
             "target.mbed_app_start"            : "0x18010400",
-            "update-client.bootloader-details" : "0x1800C8E4",
+            "update-client.bootloader-details" : "0x1800C91C",
             "update-client.application-details": "(0x18000000+64*1024)",
-            "update-client.storage-address"  : "(1024*1024)",
-            "update-client.storage-size"     : "(1024*1024)",
             "wifi-en": "P5_3",
             "wifi-io0": "P3_14",
             "wifi-tx": "P7_1",

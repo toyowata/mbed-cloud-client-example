@@ -42,7 +42,7 @@
         },
         "GR_LYCHEE": {
             "target.mbed_app_start"            : "0x18010400",
-            "update-client.bootloader-details" : "0x1800C8E4",
+            "update-client.bootloader-details" : "0x1800C91C",
             "update-client.application-details": "(0x18000000+64*1024)"
         }
     },
