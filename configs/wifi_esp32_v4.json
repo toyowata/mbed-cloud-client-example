@@ -1,7 +1,8 @@
 {
     "macros": [
         "MBEDTLS_USER_CONFIG_FILE=\"mbedTLSConfig_mbedOS.h\"",
-        "PAL_USER_DEFINED_CONFIGURATION=\"sotp_fs_config_MbedOS.h\"",
+        "PAL_USER_DEFINED_CONFIGURATION=\"sotp_fs_config_MbedOS_legacy.h\"",
+        "PAL_INT_FLASH_NUM_SECTIONS=2",
         "ARM_UC_USE_PAL_BLOCKDEVICE=1",
         "MBED_CLOUD_CLIENT_UPDATE_STORAGE=ARM_UCP_FLASHIAP_BLOCKDEVICE"
     ],
@@ -21,12 +22,8 @@
         },
         "GR_LYCHEE": {
             "target.mbed_app_start"            : "0x18010400",
-            "update-client.bootloader-details" : "0x1800C91C",
-            "update-client.application-details": "(0x18000000+64*1024)",
-            "wifi-en": "P5_3",
-            "wifi-io0": "P3_14",
-            "wifi-tx": "P7_1",
-            "wifi-rx": "P0_1"
+            "update-client.bootloader-details" : "0x1800D0A4",
+            "update-client.application-details": "(0x18000000+64*1024)"
         }
     },
     "config": {
@@ -40,22 +37,6 @@
         "wifi-password": {
             "help": "WiFi Password",
             "value": "\"PASSWORD\""
-        },
-        "wifi-tx": {
-            "help": "TX pin for serial connection to external device",
-            "value": "D1"
-        },
-        "wifi-rx": {
-            "help": "RX pin for serial connection to external device",
-            "value": "D0"
-        },
-        "wifi-en": {
-            "help": "EN pin for ESP32",
-            "value": "NC"
-        },
-        "wifi-io0": {
-            "help": "IO0 pin for ESP32",
-            "value": "NC"
         },
         "developer-mode": {
             "help": "Enable Developer mode to skip Factory enrollment",
