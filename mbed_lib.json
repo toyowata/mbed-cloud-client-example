@@ -94,6 +94,12 @@
             "sotp-section-2-address"           : "(0x08000000+48*1024)",
             "sotp-section-2-size"              : "(16*1024)"
         },
+        "NUCLEO_F767ZI": {
+            "sotp-section-1-address"           : "(0x08000000+64*1024)",
+            "sotp-section-1-size"              : "(32*1024)",
+            "sotp-section-2-address"           : "(0x08000000+96*1024)",
+            "sotp-section-2-size"              : "(32*1024)"
+        },
         "UBLOX_EVK_ODIN_W2": {
             "sotp-section-1-address"           : "(0x08000000+32*1024)",
             "sotp-section-1-size"              : "(16*1024)",
