@@ -48,7 +48,7 @@
             "target.app_offset"                     : "0x20400",
             "update-client.application-details"     : "(0x08000000+128*1024)",
             "update-client.storage-address"         : "(1024*1024*2)",
-            "update-client.storage-size"            : "(1024*1024*8)",
+            "update-client.storage-size"            : "(1024*1024*6)",
             "update-client.storage-locations"       : 1,
             "client_app.partition_mode"             : 0,
             "spif-driver.SPI_MOSI"                  : "PB_5",
