@@ -185,10 +185,10 @@
             "storage.storage_type"                      : "TDB_INTERNAL",
             "cellular.debug-at"                         : true,
             "cellular.use-apn-lookup"                   : false,
-            "nsapi.default-cellular-plmn"               : "\"00000\"",
-            "nsapi.default-cellular-apn"                : "\"apn\"",
-            "nsapi.default-cellular-username"           : "\"username\"",
-            "nsapi.default-cellular-password"           : "\"password\""
+            "nsapi.default-cellular-plmn"               : "\"44052\"",
+            "nsapi.default-cellular-apn"                : "\"soracom.io\"",
+            "nsapi.default-cellular-username"           : "\"sora\"",
+            "nsapi.default-cellular-password"           : "\"sora\""
         }
     },
     "config": {
@@ -199,7 +199,7 @@
         },
         "button-pinname": {
             "help"      : "PinName for button.",
-            "value"     : "BUTTON1"
+            "value"     : "D38"
         },
         "led-pinname"   : {
             "help"      : "PinName for led, which is attached to led blink resource.",

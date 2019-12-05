@@ -26,6 +26,7 @@
 #ifndef MBED_CONF_MBED_CLOUD_CLIENT_DISABLE_CERTIFICATE_ENROLLMENT
 #include "certificate_enrollment_user_cb.h"
 #endif
+#include "demo_config.h"
 
 #if defined(MBED_CONF_NANOSTACK_HAL_EVENT_LOOP_USE_MBED_EVENTS) && \
  (MBED_CONF_NANOSTACK_HAL_EVENT_LOOP_USE_MBED_EVENTS == 1) && \
@@ -56,6 +57,9 @@ static M2MResource* button_res;
 static M2MResource* pattern_res;
 static M2MResource* blink_res;
 static M2MResource* unregister_res;
+#if USE_SENSOR
+static M2MResource* temp_res;
+#endif
 
 void unregister_received(void);
 void unregister(void);
@@ -160,6 +164,13 @@ void factory_reset(void *)
 
 void main_application(void)
 {
+
+#if USE_SENSOR
+    printf("\n\n***** Pelion DM demo with sensor *****\n\n");
+#else
+    printf("\n\n***** Pelion DM demo *****\n\n");
+#endif
+
 #if defined(__linux__) && (MBED_CONF_MBED_TRACE_ENABLE == 0)
         // make sure the line buffering is on as non-trace builds do
         // not produce enough output to fill the buffer
@@ -248,12 +259,22 @@ void main_application(void)
     // Create resource for running factory reset for the device. Path of this resource will be: 5000/0/2.
     mbedClient.add_cloud_resource(5000, 0, 2, "factory_reset", M2MResourceInstance::STRING,
                  M2MBase::POST_ALLOWED, NULL, false, (void*)factory_reset, NULL);
+#if USE_SENSOR
+    // Create resource for button count. Path of this resource will be: 3303/0/5700.
+    temp_res = mbedClient.add_cloud_resource(3303, 0, 5700, "temp_resource", M2MResourceInstance::FLOAT,
+                              M2MBase::GET_ALLOWED, 0, true, NULL, NULL);
+    temp_res->set_value_float(1.234);
+#endif
 #endif
 
     mbedClient.register_and_connect();
 
 #ifndef MCC_MINIMAL
-    blinky.init(mbedClient, button_res);
+#if USE_SENSOR
+    blinky.init(mbedClient, button_res, temp_res);
+#else
+    blinky.init(mbedClient, button_res, 0);
+#endif
     blinky.request_next_loop_event();
 #endif
 

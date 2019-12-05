@@ -20,6 +20,7 @@
 #define __BLINKY_H__
 
 #include "nanostack-event-loop/eventOS_event.h"
+#include "demo_config.h"
 
 class SimpleM2MClient;
 class M2MResource;
@@ -38,7 +39,7 @@ public:
 
     ~Blinky();
 
-    void init(SimpleM2MClient &client, M2MResource *resource);
+    void init(SimpleM2MClient &client, M2MResource *resource_button, M2MResource *resource_temp);
 
     bool start(const char* pattern, size_t length, bool pattern_restart);
 
@@ -69,6 +70,10 @@ private:
     SimpleM2MClient *_client;
 
     M2MResource     *_button_resource;
+
+#if USE_SENSOR
+    M2MResource     *_temp_resource;
+#endif
 
     int              _button_count;
 

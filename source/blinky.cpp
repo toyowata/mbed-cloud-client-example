@@ -33,6 +33,14 @@
 
 #define TRACE_GROUP "blky"
 
+#include "demo_config.h"
+#include "Grove_temperature.h"
+
+#if USE_SENSOR
+DigitalOut GrovePower(GRO_POWR, 1);
+Grove_temperature sensor(A6);
+#endif
+
 #define BLINKY_TASKLET_LOOP_INIT_EVENT 0
 #define BLINKY_TASKLET_PATTERN_INIT_EVENT 1
 #define BLINKY_TASKLET_PATTERN_TIMER 2
@@ -63,6 +71,9 @@ Blinky::Blinky()
   _curr_pattern(NULL),
   _client(NULL),
   _button_resource(NULL),
+#if USE_SENSOR
+  _temp_resource(NULL),
+#endif
   _state(STATE_IDLE),
   _restart(false)
 {
@@ -84,15 +95,18 @@ void Blinky::create_tasklet()
 }
 
 // use references to encourage caller to pass this existing object
-void Blinky::init(SimpleM2MClient &client, M2MResource *resource)
+void Blinky::init(SimpleM2MClient &client, M2MResource *resource_button, M2MResource *resource_temp)
 {
     // Do not start if resource has not been allocated.
-    if (!resource) {
+    if (!resource_button) {
         return;
     }
 
     _client = &client;
-    _button_resource = resource;
+    _button_resource = resource_button;
+#if USE_SENSOR
+    _temp_resource = resource_temp;
+#endif
 
     // create the tasklet, if not done already
     create_tasklet();
@@ -245,6 +259,11 @@ void Blinky::handle_buttons()
         if (mcc_platform_button_clicked()) {
             _button_resource->set_value(++_button_count);
             printf("Button resource updated. Value %d\n", _button_count);
+#if USE_SENSOR
+            float val = sensor.getTemperature();
+            _temp_resource->set_value_float(val);
+            printf("Temperature resource updated. Value %2.2f\n", val);
+#endif
         }
     }
 }
